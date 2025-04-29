@@ -36,8 +36,8 @@ if not exist "%templatePath%\README.md" (
     echo README.md 템플릿이 없습니다. 확인하세요.
 ) else (
     copy "%templatePath%\README.md" "%cd%\README.md" > nul
-    powershell -Command "(Get-Content README.md) -replace '프로젝트명', '%projectName%' | Set-Content README.md"
-	powershell -Command "(Get-Content README.md) -replace '날짜', (Get-Date -Format 'yyyy-MM-dd') | Set-Content README.md"
+    powershell -Command "(Get-Content README.md) -replace '프로젝트명', '%projectName%' | Set-Content README.md -Encoding UTF8"
+	powershell -Command "(Get-Content README.md) -replace '오늘', (Get-Date -Format 'yyyy-MM-dd') | Set-Content README.md -Encoding UTF8"
     echo README.md를 생성했습니다.
 )
 
@@ -52,8 +52,6 @@ if not exist "%templatePath%\.gitignore" (
 git init
 git branch -m main
 git remote add origin %remoteUrl%
-
-powershell -Command "if (Test-Path 'README.md') { (Get-Content 'README.md' -Encoding Default) | Set-Content 'README.md' -Encoding UTF8 }"
 
 :: 초기 커밋 및 푸시
 git add .
