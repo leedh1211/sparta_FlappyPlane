@@ -36,8 +36,8 @@ if not exist "%templatePath%\README.md" (
     echo README.md 템플릿이 없습니다. 확인하세요.
 ) else (
     copy "%templatePath%\README.md" "%cd%\README.md" > nul
-    powershell -Command "(Get-Content README.md) -replace '프로젝트명', '%projectName%' | Set-Content README.md -Encoding UTF8"
-	powershell -Command "(Get-Content README.md) -replace '오늘', (Get-Date -Format 'yyyy-MM-dd') | Set-Content README.md -Encoding UTF8"
+    powershell -Command "(Get-Content 'README.md' -Encoding Default) -replace '프로젝트명', '%projectName%' | Set-Content 'README.md' -Encoding UTF8BOM"
+	powershell -Command "(Get-Content 'README.md' -Encoding UTF8BOM) -replace '오늘', (Get-Date -Format 'yyyy-MM-dd') | Set-Content 'README.md' -Encoding UTF8BOM"
     echo README.md를 생성했습니다.
 )
 
