@@ -53,6 +53,8 @@ git init
 git branch -m main
 git remote add origin %remoteUrl%
 
+powershell -Command "if (Test-Path 'README.md') { (Get-Content 'README.md' -Encoding Default) | Set-Content 'README.md' -Encoding UTF8 }"
+
 :: 초기 커밋 및 푸시
 git add .
 git commit -m "Initial commit (%projectName%)"
